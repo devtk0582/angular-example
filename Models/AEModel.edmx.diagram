@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8247b3b225d2489abd65625b660ee1af" Name="Diagram1">
+        <EntityTypeShape EntityType="AngularExampleDBModel.City" Width="1.5" PointX="2.6641509377696324" PointY="25.745150682397721" />
+        <EntityTypeShape EntityType="AngularExampleDBModel.Country" Width="1.5" PointX="5.8500474923523367" PointY="25.071159001938607" />
+        <EntityTypeShape EntityType="AngularExampleDBModel.State" Width="1.5" PointX="9.88210761634731" PointY="23.955708410570264" />
+        <EntityTypeShape EntityType="AngularExampleDBModel.ZipCode" Width="1.5" PointX="7.875" PointY="27.375" />
+        <AssociationConnector Association="AngularExampleDBModel.FK_City_Country" />
+        <AssociationConnector Association="AngularExampleDBModel.FK_City_State" />
+        <AssociationConnector Association="AngularExampleDBModel.FK_ZipCode_City" />
+        <AssociationConnector Association="AngularExampleDBModel.FK_State_Country" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AngularExampleDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="AngularExampleDBModelStoreContainer">
+          <EntitySet Name="City" EntityType="AngularExampleDBModel.Store.City" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Country" EntityType="AngularExampleDBModel.Store.Country" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="State" EntityType="AngularExampleDBModel.Store.State" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ZipCode" EntityType="AngularExampleDBModel.Store.ZipCode" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_City_Country" Association="AngularExampleDBModel.Store.FK_City_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="City" EntitySet="City" />
+          </AssociationSet>
+          <AssociationSet Name="FK_City_State" Association="AngularExampleDBModel.Store.FK_City_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="City" EntitySet="City" />
+          </AssociationSet>
+          <AssociationSet Name="FK_State_Country" Association="AngularExampleDBModel.Store.FK_State_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="State" EntitySet="State" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZipCode_City" Association="AngularExampleDBModel.Store.FK_ZipCode_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="ZipCode" EntitySet="ZipCode" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AccentCity" Type="nvarchar" MaxLength="50" />
+          <Property Name="CityName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="StateID" Type="int" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="Primary" Type="bit" Nullable="false" />
+          <Property Name="CountryID" Type="int" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CountryCode" Type="varchar" MaxLength="50" />
+          <Property Name="CountryName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ISO3Code" Type="nvarchar" MaxLength="10" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="StateID" />
+          </Key>
+          <Property Name="StateID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StateCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="StateName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CountryID" Type="int" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZipCode">
+          <Key>
+            <PropertyRef Name="ZipID" />
+          </Key>
+          <Property Name="ZipID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ZipCode" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="CityID" Type="int" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="Latitude" Type="decimal" Nullable="false" Scale="10" />
+          <Property Name="Longitude" Type="decimal" Nullable="false" Scale="10" />
+        </EntityType>
+        <Association Name="FK_City_Country">
+          <End Role="Country" Type="AngularExampleDBModel.Store.Country" Multiplicity="0..1" />
+          <End Role="City" Type="AngularExampleDBModel.Store.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_City_State">
+          <End Role="State" Type="AngularExampleDBModel.Store.State" Multiplicity="0..1" />
+          <End Role="City" Type="AngularExampleDBModel.Store.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="StateID" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_State_Country">
+          <End Role="Country" Type="AngularExampleDBModel.Store.Country" Multiplicity="1" />
+          <End Role="State" Type="AngularExampleDBModel.Store.State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZipCode_City">
+          <End Role="City" Type="AngularExampleDBModel.Store.City" Multiplicity="1" />
+          <End Role="ZipCode" Type="AngularExampleDBModel.Store.ZipCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="ZipCode">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AngularExampleDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AngularExampleDBEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Cities" EntityType="AngularExampleDBModel.City" />
+          <EntitySet Name="Countries" EntityType="AngularExampleDBModel.Country" />
+          <EntitySet Name="States" EntityType="AngularExampleDBModel.State" />
+          <EntitySet Name="ZipCodes" EntityType="AngularExampleDBModel.ZipCode" />
+          <AssociationSet Name="FK_City_Country" Association="AngularExampleDBModel.FK_City_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="City" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_City_State" Association="AngularExampleDBModel.FK_City_State">
+            <End Role="State" EntitySet="States" />
+            <End Role="City" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZipCode_City" Association="AngularExampleDBModel.FK_ZipCode_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="ZipCode" EntitySet="ZipCodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_State_Country" Association="AngularExampleDBModel.FK_State_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="State" EntitySet="States" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Type="Int32" Name="CityID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="AccentCity" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CityName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="StateID" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="Boolean" Name="Primary" Nullable="false" />
+          <Property Type="Int32" Name="CountryID" />
+          <NavigationProperty Name="Country" Relationship="AngularExampleDBModel.FK_City_Country" FromRole="City" ToRole="Country" />
+          <NavigationProperty Name="State" Relationship="AngularExampleDBModel.FK_City_State" FromRole="City" ToRole="State" />
+          <NavigationProperty Name="ZipCodes" Relationship="AngularExampleDBModel.FK_ZipCode_City" FromRole="City" ToRole="ZipCode" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Type="Int32" Name="CountryID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CountryCode" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CountryName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ISO3Code" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <NavigationProperty Name="Cities" Relationship="AngularExampleDBModel.FK_City_Country" FromRole="Country" ToRole="City" />
+          <NavigationProperty Name="States" Relationship="AngularExampleDBModel.FK_State_Country" FromRole="Country" ToRole="State" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="StateID" />
+          </Key>
+          <Property Type="Int32" Name="StateID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="StateCode" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="StateName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CountryID" Nullable="false" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <NavigationProperty Name="Cities" Relationship="AngularExampleDBModel.FK_City_State" FromRole="State" ToRole="City" />
+          <NavigationProperty Name="Country" Relationship="AngularExampleDBModel.FK_State_Country" FromRole="State" ToRole="Country" />
+        </EntityType>
+        <EntityType Name="ZipCode">
+          <Key>
+            <PropertyRef Name="ZipID" />
+          </Key>
+          <Property Type="Int32" Name="ZipID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ZipCode1" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="CityID" Nullable="false" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="Decimal" Name="Latitude" Nullable="false" Precision="18" Scale="10" />
+          <Property Type="Decimal" Name="Longitude" Nullable="false" Precision="18" Scale="10" />
+          <NavigationProperty Name="City" Relationship="AngularExampleDBModel.FK_ZipCode_City" FromRole="ZipCode" ToRole="City" />
+        </EntityType>
+        <Association Name="FK_City_Country">
+          <End Type="AngularExampleDBModel.Country" Role="Country" Multiplicity="0..1" />
+          <End Type="AngularExampleDBModel.City" Role="City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_City_State">
+          <End Type="AngularExampleDBModel.State" Role="State" Multiplicity="0..1" />
+          <End Type="AngularExampleDBModel.City" Role="City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="StateID" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZipCode_City">
+          <End Type="AngularExampleDBModel.City" Role="City" Multiplicity="1" />
+          <End Type="AngularExampleDBModel.ZipCode" Role="ZipCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="ZipCode">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_State_Country">
+          <End Type="AngularExampleDBModel.Country" Role="Country" Multiplicity="1" />
+          <End Type="AngularExampleDBModel.State" Role="State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AngularExampleDBModelStoreContainer" CdmEntityContainer="AngularExampleDBEntities">
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="AngularExampleDBModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="Primary" ColumnName="Primary" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="AccentCity" ColumnName="AccentCity" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="AngularExampleDBModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="ISO3Code" ColumnName="ISO3Code" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="AngularExampleDBModel.State">
+              <MappingFragment StoreEntitySet="State">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZipCodes">
+            <EntityTypeMapping TypeName="AngularExampleDBModel.ZipCode">
+              <MappingFragment StoreEntitySet="ZipCode">
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="ZipCode1" ColumnName="ZipCode" />
+                <ScalarProperty Name="ZipID" ColumnName="ZipID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

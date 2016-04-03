@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@section Styles
+{
+    <link href="~/Content/app/main.css" rel="stylesheet" />
+}
+
+<div class="main-body" ng-app="myApp" ng-controller="HomeController">
+    <div class="jumbotron jumbotron-main">
+        <div class="container">
+            <h2 ng-bind="title"></h2>
+        </div>
+    </div>
+    <div class="page-header">
+        <h3 ng-bind="header"></h3>
+    </div>
+    <div>
+        <ul>
+    <li ng-repeat="item in links">
+      <span>{{item.name}}</span>
+      <p><a role="button" class="btn btn-primay" href="{{ item.url }}">{{ item.link }}</a></p>
+    </li>
+  </ul>
+    </div>
+</div>
+
+
+@section Javascripts
+{
+    <script src="~/Scripts/app/app.js"></script>
+}
