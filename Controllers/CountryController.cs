@@ -34,7 +34,8 @@ namespace AngularExample.Controllers
                     Id = o.CountryID,
                     CountryName = o.CountryName,
                     CountryCode = o.CountryCode,
-                    ISO3Code = o.ISO3Code
+                    ISO3Code = o.ISO3Code,
+                    ImageName = o.ImageName ?? "default.jpg"
                 }), JsonRequestBehavior.AllowGet);
         }
 

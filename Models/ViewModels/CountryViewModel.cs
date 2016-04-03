@@ -15,5 +15,6 @@ namespace AngularExample.Models.ViewModels
         public string CountryName { get; set; }
         [Display(Name = "ISO3 Code")]
         public string ISO3Code { get; set; }
+        public string ImageName { get; set; }
     }
 }

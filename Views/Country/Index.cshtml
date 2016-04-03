@@ -59,21 +59,30 @@
         <table class="table-striped text-left col-lg-12">
             <thead>
                 <tr>
-                    <th class="col-lg-4">Country Name
+                    <th class="col-lg-3">
+                        Country Name
                     </th>
-                    <th class="col-lg-3">Country Code
+                    <th class="col-lg-3">
+                        Flag
                     </th>
-                    <th class="col-lg-2">Country ISO3 Code
+                    <th class="col-lg-2">
+                        Country Code
                     </th>
-                    <th class="col-lg-2">Edit
+                    <th class="col-lg-2">
+                        Country ISO3 Code
                     </th>
-                    <th class="col-lg-2">Delete
+                    <th class="col-lg-1">
+                        Edit
+                    </th>
+                    <th class="col-lg-1">
+                        Delete
                     </th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="country in countries | filter:query | orderBy: orderProp">
                     <td ng-bind-template="{{ country.CountryName }}"></td>
+                    <td><img ng-src="~/Content/images/country/{{ country.ImageName }}" alt="{{ country.ImageName }}"></td>
                     <td ng-bind-template="{{ country.CountryCode }}"></td>
                     <td ng-bind-template="{{ country.ISO3Code }}"></td>
                     <td><a role="button" class="btn btn-primay">Edit</a></td>

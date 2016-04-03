@@ -25,6 +25,7 @@ namespace AngularExample.Models
         public string CountryName { get; set; }
         public string ISO3Code { get; set; }
         public bool Active { get; set; }
+        public string ImageName { get; set; }
     
         public virtual ICollection<City> Cities { get; set; }
         public virtual ICollection<State> States { get; set; }

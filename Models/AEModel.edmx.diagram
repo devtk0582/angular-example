@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8247b3b225d2489abd65625b660ee1af" Name="Diagram1">
+      <Diagram DiagramId="8247b3b225d2489abd65625b660ee1af" Name="Diagram1" ZoomLevel="67">
         <EntityTypeShape EntityType="AngularExampleDBModel.City" Width="1.5" PointX="2.6641509377696324" PointY="25.745150682397721" />
         <EntityTypeShape EntityType="AngularExampleDBModel.Country" Width="1.5" PointX="5.8500474923523367" PointY="25.071159001938607" />
         <EntityTypeShape EntityType="AngularExampleDBModel.State" Width="1.5" PointX="9.88210761634731" PointY="23.955708410570264" />
